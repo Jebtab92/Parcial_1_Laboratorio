@@ -178,7 +178,7 @@ int Validate_Cuit(char *pData)
 				contadorGuion++;
 			}
 		}
-		if(contadorDigito == 11 && contadorGuion == 2)
+		if(contadorDigito >= 10 && contadorGuion == 2)
 		{
 			rtn = 1;
 		}
@@ -351,7 +351,7 @@ void Get_OnlyAlphabetString(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 		}
 		else
 		{
-			printf("Error, solo caracteres alfabeticos validos \n");
+			printf("\n");
 		}
 
 		printf("%s", ERROR_MSJ);
@@ -585,5 +585,14 @@ void Format_NameLastname(char *pName, char *pLastname, char *pFormatName)
 }
 void Menu(void)
 {
-	// Imprimir menu
+	printf("\n--Menu Principal--\n"
+			"1) Alta de contribuyente\n"
+			"2) Modificar datos del contribuyente\n"
+			"3) Baja de contribuyente\n"
+			"4) Recaudacion\n"
+			"5) Refinanciar recaudacion\n"
+			"6) Saldar recaudacion\n"
+			"7) Imprimir contribuyentes\n"
+			"8) Imprimir recaudacion\n"
+			"9) Salir\n");
 }
