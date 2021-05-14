@@ -17,14 +17,13 @@
 #define MAX_CHARS_CADENAS 30
 #define LIBRE 1
 #define OCUPADO 0
-#define BAJA -1
 
 //*** ESTRUCTURA
 typedef struct
 {
 	int idEstado;
 	char estado[MAX_CHARS_CADENAS];
-}eEstado;
+}	eEstado;
 
 
 typedef struct
@@ -45,6 +44,7 @@ typedef struct
 } eRecaudacion;
 //***
 void hardCodeTipo(eTipo array[]);
+void hardCodeEstado(eEstado array[]);
 /** INICIO CABECERAS DE FUNCION*/
 void eRecaudacion_Inicializar(eRecaudacion array[], int size);
 int eRecaudacion_ObtenerID(int *Recaudacion_idIncremental);
@@ -52,7 +52,6 @@ int eRecaudacion_ObtenerIndexLibre(eRecaudacion array[], int size);
 int eRecaudacion_BuscarPorID(eRecaudacion array[], int size, int ID);
 void eRecaudacion_MostrarUno(eRecaudacion Recaudacion);
 int eRecaudacion_MostrarTodos(eRecaudacion array[], int size);
-int eRecaudacion_MostrarDadosDeBaja(eRecaudacion array[], int size);
 
 
 //ABM

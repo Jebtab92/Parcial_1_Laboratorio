@@ -17,7 +17,6 @@
 #define MAX_CHARS_CADENAS 30
 #define LIBRE 1
 #define OCUPADO 0
-#define BAJA -1
 
 //*** Estructura
 typedef struct
@@ -37,7 +36,6 @@ int eContribuyente_ObtenerIndexLibre(eContribuyente array[], int size);
 int eContribuyente_BuscarPorID(eContribuyente array[], int size, int ID);
 void eContribuyente_MostrarUno(eContribuyente Contribuyente);
 int eContribuyente_MostrarTodos(eContribuyente array[], int size);
-int eContribuyente_MostrarDadosDeBaja(eContribuyente array[], int size);
 
 //ABM
 eContribuyente eContribuyente_CargarDatos(void);

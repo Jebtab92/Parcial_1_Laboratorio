@@ -30,8 +30,10 @@ int main(void)
 
 
 	// Creo array tipo y cargo los tres valores
+	eEstado estado[2];
 	eTipo Tipo[2];
 	hardCodeTipo(Tipo);
+	hardCodeEstado(estado);
 
 	// Inicializo ambos arrays
 	eContribuyente_Inicializar(Contribuyente, TAM_ESTRUCTURA);

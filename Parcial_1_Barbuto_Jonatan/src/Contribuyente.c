@@ -8,8 +8,13 @@
 #include "Biblioteca.h"
 #include "Contribuyente.h"
 
-
-void eContribuyente_Inicializar(eContribuyente array[], int size) {
+/*
+ * \brief recibe un array de estructura y tamanio
+ * \param pone isEmpty en 1 = LIBRE
+ * \return void
+ */
+void eContribuyente_Inicializar(eContribuyente array[], int size)
+{
 	int i;
 	if(array != NULL && size > 0)
 	{
@@ -20,6 +25,11 @@ void eContribuyente_Inicializar(eContribuyente array[], int size) {
 	}
 }
 
+/*
+ * \brief recibe un int id
+ * \param lo incrementa en 1
+ * \return retorna el id ya incrementado
+ */
 int eContribuyente_ObtenerID(int *Contribuyente_idIncremental)
 {
 	int rtn;
@@ -27,7 +37,13 @@ int eContribuyente_ObtenerID(int *Contribuyente_idIncremental)
 	return rtn;
 }
 
-int eContribuyente_ObtenerIndexLibre(eContribuyente array[], int size) {
+/*
+ * \brief recibe array de estructura
+ * \param busca el lugar libre isEmpty = 1
+ * \return la primer posicion libre
+ */
+int eContribuyente_ObtenerIndexLibre(eContribuyente array[], int size)
+{
 	int rtn = -1;
 	int i;
 
@@ -45,6 +61,11 @@ int eContribuyente_ObtenerIndexLibre(eContribuyente array[], int size) {
 	return rtn;
 }
 
+/*
+ * \brief recibe un array de estructura
+ * \param busca un ID por el array
+ * \return la posicion del ID
+ */
 int eContribuyente_BuscarPorID(eContribuyente array[], int size, int ID)
 {
 	int rtn = -1;
@@ -65,13 +86,23 @@ int eContribuyente_BuscarPorID(eContribuyente array[], int size, int ID)
 	return rtn;
 }
 
-void eContribuyente_MostrarUno(eContribuyente Contribuyente) {
-	//PRINTF DE UN SOLO Contribuyente
+/*
+ * \brief recibe un array de estructura
+ * \param imprime cada valor de la estructura
+ * \return void
+ */
+void eContribuyente_MostrarUno(eContribuyente Contribuyente)
+{
 	printf("|%10d|  %20s|  %20s|  %10s| \n",
 			Contribuyente.idContribuyente, Contribuyente.nombre, Contribuyente.apellido,
 			Contribuyente.cuil);
 }
 
+/*
+ * \brief recibe un array de estructura, tamanio
+ * \param imprime todos por pantalla
+ * \return int 1 si hay para mostrar 0 si no hay nada
+ */
 int eContribuyente_MostrarTodos(eContribuyente array[], int size)
 {
 	int i;
@@ -82,59 +113,32 @@ int eContribuyente_MostrarTodos(eContribuyente array[], int size)
 	printf("|%10s  %20s  %20s  %10s| \n","ID","NOMBRE","APELLIDO","CUIL");
 	printf("*******************************************************************************\n");
 
-	//SI EXISTE EL ARRAY Y EL LIMITE ES VALIDO
-	if (array != NULL && size > 0) {
-		//RECORRO TODO EL ARRAY
-		for (i = 0; i < size; i++) {
-			//PREGUNTO POR SU ESTADO "OCUPADO"
-			if (array[i].isEmpty == OCUPADO) {
-				//MUESTRO UN SOLO Contribuyente
+	if(array != NULL && size > 0)
+	{
+		for(i = 0; i < size; i++)
+		{
+			if(array[i].isEmpty == OCUPADO)
+			{
 				eContribuyente_MostrarUno(array[i]);
-				//CONTADOR DE Contribuyente
 				cantidad++;
 			}
 		}
 	}
 
-	//SI CANTIDAD == 0 - NO HUBO Contribuyente PARA MOSTRAR (ARRAY SIN ALTAS)
-	if (cantidad > 0) {
+
+	if(cantidad > 0)
+	{
 		rtn = 1;
 	}
 
 	return rtn;
 }
 
-int eContribuyente_MostrarDadosDeBaja(eContribuyente array[], int size) {
-	int i;
-	int rtn = 0;
-	int cantidad = 0;
-
-	//CABECERA
-	puts("\t> Contribuyente\n");
-	printf("%5s\n\n", "ID"); //AGREGAR TITULOS DE COLUMNA (QUITAR DE VER QUE NO ES NECESARIO)
-
-	//SI EXISTE EL ARRAY Y EL LIMITE ES VALIDO
-	if (array != NULL && size > 0) {
-		//RECORRO TODO EL ARRAY
-		for (i = 0; i < size; i++) {
-			//PREGUNTO POR SU ESTADO "BAJA"
-			if (array[i].isEmpty == BAJA) {
-				//MUESTRO UN SOLO Contribuyente
-				eContribuyente_MostrarUno(array[i]);
-				//CONTADOR DE Contribuyente
-				cantidad++;
-			}
-		}
-	}
-
-	//SI CANTIDAD == 0 - NO HUBO Contribuyente PARA MOSTRAR (ARRAY SIN BAJAS)
-	if (cantidad > 0) {
-		rtn = 1;
-	}
-
-	return rtn;
-}
-
+/*
+ * \brief void
+ * \param crea una estructura auxiliar y pide los valores al usuario
+ * \return el auxiliar
+ */
 eContribuyente eContribuyente_CargarDatos(void)
 {
 	eContribuyente auxiliar;
@@ -147,6 +151,11 @@ eContribuyente eContribuyente_CargarDatos(void)
 	return auxiliar;
 }
 
+/*
+ * \brief recibe un array de estructura
+ * \param pide que variable se quiere modificar
+ * \return retorna el auxiliar
+ */
 eContribuyente eContribuyente_ModificarUno(eContribuyente Contribuyente)
 {
 	eContribuyente auxiliar = Contribuyente;
@@ -181,12 +190,14 @@ eContribuyente eContribuyente_ModificarUno(eContribuyente Contribuyente)
 			break;
 		}
 	}
-
-	/** MODIFICAR DATOS NECESARIOS PARA EL "MODIFICAR" */
-	/** IMPORTANTE - MODIFICAR EL AUXILIAR QUE ES LA COPIA DEL ORIGINAL */
 	return auxiliar;
 }
 
+/*
+ * \brief recibe un array de estructura, id contribuyente, tamanio
+ * \param pregunta si confirma el nuevo contribuyente asigna todo
+ * \return int 1 si se dio de alta
+ */
 int eContribuyente_Alta(eContribuyente array[],int *idContribuyente, int size)
 {
 	int rtn = 0;
@@ -229,6 +240,11 @@ int eContribuyente_Alta(eContribuyente array[],int *idContribuyente, int size)
 	return rtn;
 }
 
+/*
+ * \brief recibe un array de estructura, tamanio
+ * \param muestro y pido id de baja, confirma y procede a cambiar isEmpty = LIBRE
+ * \return int 1 si se dio de baja
+ */
 int eContribuyente_Baja(eContribuyente array[], int size)
 {
 	int rtn = 0;
@@ -257,13 +273,18 @@ int eContribuyente_Baja(eContribuyente array[], int size)
 
 		if(Validate_Exit_SN("Desea continuar Si[s] - No[n] -->", "Error, Si[s] - No[n] -->"))
 		{
-			array[index].isEmpty = BAJA;
+			array[index].isEmpty = LIBRE;
 			rtn = 1;
 		}
 	}
 	return rtn;
 }
 
+/*
+ * \brief recibe un array de estructura, tamanio
+ * \param muestra y pide id a modificar y llama a la funcion modificar uno
+ * \return int 1 si se modifico
+ */
 int eContribuyente_Modificacion(eContribuyente array[], int size)
 {
 	int rtn = 0;

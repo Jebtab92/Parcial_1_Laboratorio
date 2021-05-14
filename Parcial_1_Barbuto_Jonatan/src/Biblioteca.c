@@ -9,6 +9,11 @@
 
 // Validaciones
 
+/*
+ * \brief recibe un string
+ * \param valida que sea int
+ * \return int 1 si es correcto
+ */
 int Validate_OnlyNumberInt(char *pData)
 {
 	int rtn = 1;
@@ -42,6 +47,12 @@ int Validate_OnlyNumberInt(char *pData)
 
 	return rtn;
 }
+
+/*
+ * \brief recibe un string
+ * \param valida que sea float
+ * \return int 1 si es correcto
+ */
 int Validate_OnlyNumberFloat(char *pData)
 {
 	int countSigno = 0;
@@ -89,6 +100,12 @@ int Validate_OnlyNumberFloat(char *pData)
 
 	return rtn;
 }
+
+/*
+ * \brief recibe un string
+ * \param valida que sea solo letras
+ * \return int 1 si es correcto
+ */
 int Validate_OnlyAlphabet(char *pData)
 {
 	int rtn = 1;
@@ -111,6 +128,12 @@ int Validate_OnlyAlphabet(char *pData)
 
 	return rtn;
 }
+
+/*
+ * \brief recibe un string
+ * \param valida que sea solo letras con un espacio
+ * \return int 1 si es correcto
+ */
 int Validate_OnlyAlphabetWithSpaces(char *pData)
 {
 	int rtn = 1;
@@ -136,6 +159,12 @@ int Validate_OnlyAlphabetWithSpaces(char *pData)
 
 	return rtn;
 }
+
+/*
+ * \brief Ingresa mensaje
+ * \param valida que sea s o n
+ * \return int 1 si es s
+ */
 int Validate_Exit_SN(char *MSJ, char *ERROR_MSJ)
 {
 	int rtn = 0;
@@ -158,6 +187,12 @@ int Validate_Exit_SN(char *MSJ, char *ERROR_MSJ)
 
 	return rtn;
 }
+
+/*
+ * \brief Ingresa string de cuil
+ * \param valida que sea formato cuil
+ * \return int 1 si es correcto
+ */
 int Validate_Cuit(char *pData)
 {
 	int rtn = 1;
@@ -191,6 +226,12 @@ int Validate_Cuit(char *pData)
 }
 
 // Get
+
+/*
+ * \brief Ingresa mensaje
+ * \param valida que sea int
+ * \return int ingresado
+ */
 int Get_Int(char *MSJ, char *ERROR_MSJ)
 {
 	int rtn;
@@ -210,6 +251,12 @@ int Get_Int(char *MSJ, char *ERROR_MSJ)
 	rtn = atoi(buffer);
 	return rtn;
 }
+
+/*
+ * \brief Ingresa mensaje, minimo y maximo
+ * \param valida que sea int y este en el rango
+ * \return int ingresado
+ */
 int Get_IntRange(char *MSJ, char *ERROR_MSJ, int MIN, int MAX)
 {
 	int rtn = Get_Int(MSJ, ERROR_MSJ);
@@ -221,6 +268,12 @@ int Get_IntRange(char *MSJ, char *ERROR_MSJ, int MIN, int MAX)
 	}
 	return rtn;
 }
+
+/*
+ * \brief Ingresa mensaje
+ * \param valida que sea int y positivo
+ * \return int ingresado
+ */
 int Get_IntPositive(char *MSJ, char *ERROR_MSJ)
 {
 	int rtn = Get_Int(MSJ, ERROR_MSJ);
@@ -231,6 +284,12 @@ int Get_IntPositive(char *MSJ, char *ERROR_MSJ)
 	}
 	return rtn;
 }
+
+/*
+ * \brief Ingresa mensaje
+ * \param valida que sea int y negativo
+ * \return int ingresado
+ */
 int Get_IntNegative(char *MSJ, char *ERROR_MSJ)
 {
 	int rtn = Get_Int(MSJ, ERROR_MSJ);
@@ -241,6 +300,12 @@ int Get_IntNegative(char *MSJ, char *ERROR_MSJ)
 	}
 	return rtn;
 }
+
+/*
+ * \brief Ingresa mensaje
+ * \param valida que sea float
+ * \return float ingresado
+ */
 float Get_Float(char *MSJ, char *ERROR_MSJ)
 {
 	int rtn;
@@ -259,6 +324,12 @@ float Get_Float(char *MSJ, char *ERROR_MSJ)
 	return rtn;
 
 }
+
+/*
+ * \brief Ingresa mensaje, minimo y maximo
+ * \param valida que sea float y este dentro del rango
+ * \return float ingresado
+ */
 float Get_FloatRange(char *MSJ, char *ERROR_MSJ, float MIN, float MAX)
 {
 	float rtn = Get_Float(MSJ, ERROR_MSJ);
@@ -270,35 +341,13 @@ float Get_FloatRange(char *MSJ, char *ERROR_MSJ, float MIN, float MAX)
 	}
 	return rtn;
 }
-double Get_Double(char *MSJ, char *ERROR_MSJ)
-{
-	char buffer[SIZE_BUFFER];
-	double rtn;
 
-	printf("%s", MSJ);
-	fflush(stdin);
-	gets(buffer);
 
-	while(Validate_OnlyNumberFloat(buffer) == 0)
-	{
-		printf("%s", ERROR_MSJ);
-		fflush(stdin);
-		gets(buffer);
-	}
-	rtn = atof(buffer);
-	return rtn;
-}
-double Get_DoubleRange(char *MSJ, char *ERROR_MSJ, double MIN, double MAX)
-{
-	double rtn = Get_Float(MSJ, ERROR_MSJ);
-
-	while(rtn < MIN || rtn > MAX)
-	{
-		printf("ERROR, Fuera de rango -> [MIN]=%.2f [MAX]=%.2f.\n", MIN, MAX);
-		rtn = Get_Float(MSJ, ERROR_MSJ);
-	}
-	return rtn;
-}
+/*
+ * \brief Ingresa mensaje
+ * \param valida que sean solo letras y no nulo
+ * \return char ingresado
+ */
 char Get_Char(char *MSJ, char *ERROR_MSJ)
 {
 	char rtn;
@@ -319,6 +368,12 @@ char Get_Char(char *MSJ, char *ERROR_MSJ)
 
 	return rtn;
 }
+
+/*
+ * \brief Ingresa mensaje, string y tamanio del string
+ * \param valida que no sea nulo o 0 el string
+ * \return no retorna nada
+ */
 void Get_String(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 {
 	char buffer[SIZE_BUFFER];
@@ -336,6 +391,12 @@ void Get_String(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 	}
 	strcpy(pString, buffer);
 }
+
+/*
+ * \brief Ingresa mensaje, string y tamanio del string
+ * \param valida que tenga solo letras
+ * \return no retorna nada
+ */
 void Get_OnlyAlphabetString(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 {
 	char buffer[SIZE_BUFFER];
@@ -361,6 +422,12 @@ void Get_OnlyAlphabetString(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 
 	strcpy(pString, buffer);
 }
+
+/*
+ * \brief Ingresa mensaje, string y tamanio del string
+ * \param valida que tenga letras y espacio
+ * \return no retorna nada
+ */
 void Get_OnlyAlphabetStringWithSpaces(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 {
 	char buffer[SIZE_BUFFER];
@@ -386,6 +453,12 @@ void Get_OnlyAlphabetStringWithSpaces(char *MSJ, char *ERROR_MSJ, char *pString,
 
 	strcpy(pString, buffer);
 }
+
+/*
+ * \brief Ingresa mensaje y string
+ * \param valida que tenga formato cuil
+ * \return no retorna nada
+ */
 void Get_Cuil(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 {
 	char buffer[SIZE_BUFFER];
@@ -412,6 +485,12 @@ void Get_Cuil(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 	strcpy(pString, buffer);
 
 }
+
+/*
+ * \brief Ingresa mensaje y string
+ * \param valida que tenga formato dni
+ * \return no retorna nada
+ */
 void Get_DNI(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 {
 	char buffer[SIZE_BUFFER];
@@ -430,159 +509,11 @@ void Get_DNI(char *MSJ, char *ERROR_MSJ, char *pString, int size)
 	strcpy(pString, buffer);
 }
 
-// Utilidades
-void ArrayPrint_Int(int *pArray, int size)
-{
-	int i;
-
-	for(i = 0; i < size; i++)
-	{
-		printf("%d\n", pArray[i]);
-	}
-}
-void ArrayPrint_Float(float *pArray, int size)
-{
-	int i;
-
-	for(i = 0; i < size; i++)
-	{
-		printf("%.2f\n", pArray[i]);
-	}
-}
-int ArraySort_Int(int *pArray, int size, int criterio)
-{
-	int rtn = 0;
-	int aux, i;
-
-	if(pArray != NULL && size > 0)
-	{
-		switch(criterio)
-		{
-			case -1:
-			{
-				for(i = 0; i < size -1; i++)
-				{
-					for(int j = i + 1; j < size; j++)
-					{
-						if(pArray[i] > pArray[j])
-						{
-							aux = pArray[1];
-							pArray[i] = pArray[j];
-							pArray[j] = aux;
-						}
-					}
-				}
-				rtn = 1;
-				break;
-			}
-			case 1:
-			{
-				for(i = 0; i < size -1; i++)
-				{
-					for(int j = i + 1; j < size; j++)
-					{
-						if(pArray[i] < pArray[j])
-						{
-							aux = pArray[1];
-							pArray[i] = pArray[j];
-							pArray[j] = aux;
-						}
-					}
-				}
-				rtn = 1;
-				break;
-			}
-			default:
-			{
-				// Criterio mal ingresado
-				rtn = 0;
-				break;
-			}
-		}
-	}
-	return rtn;
-}
-int ArraySort_Float(float *pArray, int size, int criterio)
-{
-	int rtn = 0;
-	int i;
-	float aux;
-
-	if(pArray != NULL && size > 0)
-	{
-		switch(criterio)
-		{
-			case -1:
-			{
-				for(i = 0; i < size -1; i++)
-				{
-					for(int j = i + 1; j < size; j++)
-					{
-						if(pArray[i] > pArray[j])
-						{
-							aux = pArray[1];
-							pArray[i] = pArray[j];
-							pArray[j] = aux;
-						}
-					}
-				}
-				rtn = 1;
-				break;
-			}
-			case 1:
-			{
-				for(i = 0; i < size -1; i++)
-				{
-					for(int j = i + 1; j < size; j++)
-					{
-						if(pArray[i] < pArray[j])
-						{
-							aux = pArray[1];
-							pArray[i] = pArray[j];
-							pArray[j] = aux;
-						}
-					}
-				}
-				rtn = 1;
-				break;
-			}
-			default:
-			{
-				// Criterio mal ingresado
-				rtn = 0;
-				break;
-			}
-		}
-	}
-	return rtn;
-}
-void Format_NameLastname(char *pName, char *pLastname, char *pFormatName)
-{
-	strcpy(pFormatName, pLastname);
-	strcat(pFormatName, ", ");
-	strcat(pFormatName, pName);
-
-	strlwr(pFormatName);
-
-	if(strlen(pName) > 0 && strlen(pLastname) > 0)
-	{
-		for(int i = 0; i < strlen(pFormatName); i++)
-		{
-			if(i == 0 && isspace(pFormatName[i]) == 0)
-			{
-				pFormatName[0] = toupper(pFormatName[0]);
-
-			}
-			else
-			{
-				if(isspace(pFormatName[i]) && i < strlen(pFormatName) - 1)
-				{
-					pFormatName[i + 1] = toupper(pFormatName[i + 1]);
-				}
-			}
-		}
-	}
-}
+/*
+ * \brief Imprimir menu
+ * \param Menu principal
+ * \return no retorna nada
+ */
 void Menu(void)
 {
 	printf("\n--Menu Principal--\n"
